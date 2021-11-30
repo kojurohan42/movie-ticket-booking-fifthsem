@@ -2,3 +2,7 @@
 #admin
 username:admin
 pass:admin
+
+default User
+username:user
+pass:user
