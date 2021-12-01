@@ -1,3 +1,6 @@
+<?php 
+include_once 'header.php'; 
+?>
 <!DOCTYPE html>
 <html>
 <head><title>Ticket Print</title>
@@ -9,6 +12,15 @@
 </head>
 <body>
 <?php
+$username=$_SESSION['username'];
+$seats=$_SESSION['seats'];
+		
+$showOrderId=$_SESSION['showOrderId'];
+foreach($seats as $seat){
+$sql=("insert into hall (showOrderId, username, seat) values('$showOrderId','$username','$seat')");
+mysqli_query($conn, $sql);}
+$showtime=$conn->query("select * from showorder where showOrderId='$showOrderId';");
+$show=$showtime->fetch_object();
 
 echo "<h3>Future Cinemas</h3>
 <p>Kathmandu,Nepal</p>
@@ -16,23 +28,23 @@ echo "<h3>Future Cinemas</h3>
 <table>
 <tr>
 <td>Username:</td>
-<td>".$_POST['username']."</td>
+<td>".$username."</td>
 </tr>
 <tr>
 <td>Movie name:</td>
-<td>".$_POST['movieName']."</td>
+<td>".$show->movieName."</td>
 </tr>
 <tr>
 <td>Theater:</td>
-<td>".$_POST['theater']."</td>
+<td>".$show->theater."</td>
 </tr>
 <tr>
 <td>Date:</td>
-<td>".$_POST['date']."</td>
+<td>".$show->date."</td>
 </tr>
 <tr>
 <td>Time:</td>
-<td>".$_POST['time']."</td>
+<td>".$show->timeslot."</td>
 </tr>
 <tr>
 <td>No of seats:</td>

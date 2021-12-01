@@ -62,7 +62,9 @@ include_once 'header.php';
 	
 	$showOrder="";
 	$seatnumber="";//id of reducing seat
-	
+	foreach($seat_ar as $seat){
+		$seatnumber.=$seat." ";
+	}
 
 	
 	
@@ -137,18 +139,12 @@ $movieName=$row->Name;
 								</table>
 								<table>
 									<form action="ticketprint.php" method="post">
+										<?php 
+										$_SESSION['showOrderId']=$showOrderId;
+										$_SESSION['seats']=$seat_ar;
+
+										?>
 										
-										<input type="hidden" name="username" value=<?php echo '"'.$username.'"'; ?>>
-										<input type="hidden" name="movieName" value=<?php echo '"'.$movieName.'"'; ?>>
-										<input type="hidden" name="showOrderId" value=<?php echo '"'.$showOrder.'"'; ?>>
-
-
-										<input type="hidden" name="date" value=<?php echo '"'.$show->date.'"'; ?>>
-
-										<input type="hidden" name="time" value=<?php echo '"'.$show->timeslot.'"'; ?>>
-
-										<input type="hidden" name="theater" value=<?php echo '"'.$show->theater.'"'; ?>>
-
 										<input type="hidden" name="seat" value=<?php echo '"'.$count.'"'; ?>>
 										<input type="hidden" name="seatnumber" value=<?php echo '"'.$seatnumber.'"'; ?>>
 										<input type="hidden" name="ticketprice" value=<?php echo '"'.$ticketprice.'"'; ?>>
