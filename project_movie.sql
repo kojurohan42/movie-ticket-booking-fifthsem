@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 01, 2021 at 08:59 AM
+-- Generation Time: Dec 01, 2021 at 09:57 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -115,11 +115,21 @@ INSERT INTO `esewa` (`pid`, `username`, `t_seat`, `amt`, `tx_amt`, `psd`, `pdc`,
 
 DROP TABLE IF EXISTS `hall`;
 CREATE TABLE IF NOT EXISTS `hall` (
-  `showOrderId` int(50) NOT NULL,
+  `seat|_id` int(100) NOT NULL AUTO_INCREMENT,
+  `showOrderId` int(100) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `seat` int(50) DEFAULT NULL,
-  PRIMARY KEY (`showOrderId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `seat` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`seat|_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hall`
+--
+
+INSERT INTO `hall` (`seat|_id`, `showOrderId`, `username`, `seat`) VALUES
+(1, 21, 'user', 'A6'),
+(2, 21, 'user', 'B6'),
+(3, 21, 'user', 'B5');
 
 -- --------------------------------------------------------
 
