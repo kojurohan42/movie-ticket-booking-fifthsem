@@ -1,8 +1,1 @@
-This is file1
-<<<<<<< HEAD
-
-=======
-This is a fle
-this is file 3
-and i am lonely
->>>>>>> rohan
+This is file
