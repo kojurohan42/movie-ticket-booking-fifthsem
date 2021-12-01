@@ -1,8 +1,8 @@
 <?php 
-/*if (!session_id()) {
+if (!session_id()) {
 	# code...
 	session_start();
-}*/
+}
 
 $host="localhost";
 $username="root";

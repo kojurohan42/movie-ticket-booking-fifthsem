@@ -26,7 +26,7 @@
       height: 100%;
       margin: 0;
     }
-    .container{
+    .container{width:40%;
           }
     .wrapper{
       text-align: center;
@@ -47,7 +47,7 @@
   </style>
 </head>
 
-<body >
+<body>
  <?php include('header.php') ?>
   <div class="bg">
 
@@ -76,9 +76,10 @@
         <TEXTAREA name="description" placeholder="description" type="textArea" tabindex="1" required></TEXTAREA>
 
 
-        <input style="padding: 10px;" type="file" name="image" required autofocus>
+        <label>Poster 1:</label><input style="padding: 10px;" type="file" name="image" required autofocus><br>
 
-
+        <label>Poster 2:</label><input style="padding: 10px;" type="file" name="image2" required autofocus>
+        <input name="trailerLink" placeholder="Trailer Link" type="text" tabindex="1" required>
         <input style="font-size: larger;background-color: #c2fbb8;font-family: cursive;font-weight: bold;" 
         class="MovieGenre" type="submit" name="submit"> 
         <p class="copyright"></p>
@@ -108,27 +109,31 @@ if (isset($_POST['submit'] )&& !empty($_POST['submit']))
     $target="image/".basename($_FILES['image']['name']);
     $image=$_FILES['image']['name'];
     $image_tmp=$_FILES['image']['tmp_name'];
+    $image2=$_FILES['image2']['name'];
+    $image_tmp2=$_FILES['image2']['tmp_name'];
+    $trailerLink=$_POST['trailerLink'];
+    echo "<script>alert('".$image2."');</script>";
   if (!(empty($MovieName) || empty($Genre) || empty($Director) || empty($Description)|| empty($imdb)))
   {
   
-$sql="insert into movielist (Name, Genre, Director, Description, image, imdb)values('$MovieName', '$Genre', '$Director', '$Description', '$image', '$imdb')";
+$sql="insert into movielist (Name, Genre, Director, Description, image, imdb, image2, trailerLink)values('$MovieName', '$Genre', '$Director', '$Description', '$image', '$imdb', '$image2', '$trailerLink')";
 mysqli_query($conn, $sql);
 
 
       if(move_uploaded_file($image_tmp, $target))
       {
-
         //echo "<script>alert('Movie Successfully Added');</script>";
-
       }
       else{
-
         //echo "<script>alert('Movie failed to add');</script>";
-
-
-
       }
-    
+      if(move_uploaded_file($image_tmp2, $target))
+      {
+        //echo "<script>alert('Movie Successfully Added');</script>";
+      }
+      else{
+        //echo "<script>alert('Movie failed to add');</script>";
+      }
 
     $_SESSION['msg']="Movie Successfully Added";
     header ("Location: admin.php" );

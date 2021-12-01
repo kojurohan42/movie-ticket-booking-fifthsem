@@ -31,7 +31,7 @@ include_once 'header.php';
 <body>
 
 	<?php 
-	$movieId=$_SESSION['movieId'];
+	$movieId=$_POST['movieId'];
 
 	$date=$_POST['date'];
 	
@@ -39,14 +39,32 @@ include_once 'header.php';
 	
 	$theater=$_POST['theater'];
 
-	
+	$count=$_POST['count'];
 
+	$seat=$_POST['seat'];
+	$seat_ar = explode(',', $seat);
+	$seat_tr=array();
+	$max=count($seat_ar);
+	$j=0;
+
+	foreach($seat_ar as $i){
+		if($i<9)
+		$st="A".($i+1);
+		else if($i>=9 && $i<18)
+		$st="B".($i-8);
+		else if($i>=18 && $i<27)
+		$st="C".($i-17);
+		else
+		$st="D".($i-26);
+			$seat_ar[$j]=$st;	
+		$j++;
+	}
+	
 	
 	$username=$_SESSION['username'];
 	
 	$showOrder="";
 	$seatnumber="";//id of reducing seat
-	//seat counting
 	$sql="select count(seatnumber) from hall2 where name='".$username."';";
 	$result=mysqli_query($con,$sql);
 	$row = mysqli_fetch_array($result);
@@ -106,28 +124,25 @@ $movieName=$row->Name;
 									<tr>
 										<td><strong>Seat Booked </strong></td>
 										<td><?php 
-										echo "$seatCount";?> </td>
-									</tr>
+										echo $count;?> </td>
+									</tr>	
 										<tr>
 										<td><strong>Seat number </strong></td>
 										<td><?php 
-										echo "$seatnumber";?> </td>
+										foreach($seat_ar as $i)
+										{echo $i." ";
+										}
+										?> </td>
 									</tr>
 									<tr>
 										<td><strong>Ticket Price </strong></td>
-										<td> <?php $ticketprice=$seatCount*300;
+										<td> <?php $ticketprice=$count*300;
 										echo $ticketprice?> </td>
 									</tr>
 								</table>
 								<table>
 									<form action="ticketprint.php" method="post">
-										<tr><td><strong>Payment Method</strong>
-										<select>
-											<option>eSewa</option>
-											<option>fonePay</option>
-											<option>Debit Card</option>
-										</select></td>
-										<td> <input type="text" name="payment" placeholder="Id_no." ></td></tr>
+										
 										<input type="hidden" name="username" value=<?php echo '"'.$username.'"'; ?>>
 										<input type="hidden" name="movieName" value=<?php echo '"'.$movieName.'"'; ?>>
 										<input type="hidden" name="showOrderId" value=<?php echo '"'.$showOrder.'"'; ?>>
@@ -146,7 +161,7 @@ $movieName=$row->Name;
 
 										<tr>
 											<td colspan="2" width="100%">
-												<input class="btn btn-primary btn-xs btn-block" type="submit" name="submit" value="Confirm & Buy Ticket">
+												<input class="btn btn-primary btn-xs btn-block" type="submit" name="submit" value="Pay with esewa">
 											</td>
 										</td>
 									</form>

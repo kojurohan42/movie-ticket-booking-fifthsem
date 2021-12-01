@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
 <head>	
@@ -41,6 +40,9 @@
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
+		}
+		.container{
+			width:40%;
 		}
 	</style>
 </head>
@@ -114,12 +116,13 @@ if (isset($_POST['submit'] )&& !empty($_POST['submit']))
   $date=$_POST['date'];
   $timeSlot=$_POST['time'];
   $theater=$_POST['theater'];
-  
+ 
   if (!(empty($MovieName) || empty($date) || empty($timeSlot) || empty($theater)))
   {
   
 $sql="insert into showorder (movieName, date, timeslot, theater)values('$MovieName', '$date', '$timeSlot', '$theater')";
 mysqli_query($conn, $sql);
+$sql="";
 
     
 

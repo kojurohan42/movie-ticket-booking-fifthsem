@@ -25,12 +25,14 @@ include 'db.php';
     $_SESSION['movieId']="";
   }
 
-  ?><div class="container">
+  ?>
+  <div class="container">
 
   <div  class="panel with-nav-tabs panel-success">
     <div class="panel-heading">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#nowshowing" data-toggle="tab">Showing Now</a></li>
+        <li class="active"><a href="#Upcoming" data-toggle="tab">Upcoming Movies</a></li>
       </ul>
     </div>
     <div class="panel-body">
@@ -40,7 +42,7 @@ include 'db.php';
 
           <?php 
           $count=0;
-          $res=$conn->query("select * from movielist;");
+          $res=$conn->query("select * from movielist where Name in (select movieName from showorder group by movieName);");
           while ($row=$res->fetch_object()) {
              // $_SESSION['movie']=;
 
@@ -94,6 +96,13 @@ include 'db.php';
 
           $count++;
         } ?>
+        
+
+
+
+
+      </div>
+
 
 
 
@@ -102,6 +111,78 @@ include 'db.php';
     </div>
   </div>
 </div>
+<div  class="panel with-nav-tabs panel-success">
+    <div class="panel-heading">
+      <ul class="nav nav-tabs">
+       
+        <li class="active"><a href="#Upcoming" data-toggle="tab">Upcoming Movies</a></li>
+      </ul>
+    </div>
+    <div class="panel-body">
+      <div class="tab-content">
+      <div class="tab-pane fade in active" id="Upcoming">
+
+
+<?php 
+$count=0;
+$res=$conn->query("select * from movielist where Name Not in (select movieName from showorder group by movieName);");
+while ($row=$res->fetch_object()) {
+   // $_SESSION['movie']=;
+
+  if ($count==4) {
+    echo "<div class='row'>";
+    $count=0;
+  }
+
+  echo " 
+  <div class='col-md-3 col-sm-12'>
+    <div class='card-container'>
+      <div class='card'>
+        <div class='front'>
+          <div class='cover'>
+            <img src='image/".$row->image."'/> 
+          </div>
+          <div class='content'>
+            <div class='main'>
+              <h3 class='name' style='color:black;'>".$row->Name ."</h3>
+
+              <p style='color:black;'><b>IMDB: </b>".$row->imdb."</p>
+
+              <p class='profession'><b>Genre: </b>".$row->Genre ."</p>
+
+              <p class='profession'><b>Director: </b> " .$row->Director ."</p>
+              
+
+            </div>
+          </div>
+        </div>
+        <!-- end front panel -->
+        <div class='back'>
+          <div class='content'>
+            <div class='main'>
+              <h4 class='text-center'>".$row->Name ."</h4>
+              <p class='text-center' style='color:#828384; font-size:15px;'>".$row->Description ." </p>
+            </div>
+            <div style='margin-top: 10vw;' class='buy_ticket'>
+
+             <form action='ticketProcessing.php' method='post' >
+              <input type='hidden' name='movieId' value='".$row->movieId."' >
+            </form>
+
+          </div>
+        </div>
+      </div> <!-- end card -->
+    </div> <!-- end card-container -->
+  </div>
+</div>";
+
+$count++;
+} ?>
+      </div>
+      </div>
+    </div>
+</div>
+
 </div>
 
 </div>

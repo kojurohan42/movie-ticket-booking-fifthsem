@@ -1,8 +1,9 @@
 <?php include('header.php') ?>
+<?php include('deleter.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
-<style>
+<style> 
 	.features{
 		text-align:center;
 		margin:100px;

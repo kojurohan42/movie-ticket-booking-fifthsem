@@ -104,7 +104,7 @@ a:visited {
 									
 
 
-											<form action="ticketConfirmation.php" method="post" >
+											<form action="ticket2.php" method="post" >
 
 												<tr>
 													<th><strong>Date</strong></th>
@@ -121,8 +121,12 @@ a:visited {
 													<td><strong>Theater</strong></td>
 													<td>
 														<select name="theater" class="boxStyle"> 
-														<option value="hall1">hall 1</option>
-														<option value="hall1">hall 2</option> 
+														<?php $timeSlot=$conn->query("select theater from showorder where movieName='$movieName'");
+														while ($showTime=$timeSlot->fetch_object()) {
+															echo " <option value='".$showTime->theater."'>". $showTime->theater."</option>
+															";
+														} ?> 
+														</select>
 														</td>
 													</tr>
 												<tr>	
@@ -140,17 +144,13 @@ a:visited {
 
 											
 															<tr>
-														<td colspan="2"><a href="ticket2.php" style=" background-color: #ddd;"><strong>Select The Seat</strong></a></td>
+														<td colspan="2"><input class="btn btn-primary btn-xs btn-block" type="submit" name="submit" value="Select the seat"></td>
 														
 														
 													</tr>
 													<tr><td><br></td></tr>	
 													
-													<tr>									
-														<td colspan="2" width="100%">
-															<input class="btn btn-primary btn-xs btn-block" type="submit" name="submit" value="Buy Ticket">
-														</td>
-													</tr>
+													
 												</form>
 
 
