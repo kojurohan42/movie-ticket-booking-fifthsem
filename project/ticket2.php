@@ -33,97 +33,15 @@
 	</style>
 	<?php 
 	$movieId=$_SESSION['movieId'];
-
+$movieName=$_POST['movieName'];
 $date=$_POST['date'];
 
 $time=$_POST['timeSlot'];
 
 $theater=$_POST['theater'];
-$dt=strtotime($date);
-$day=date('D',$dt);
-$th="";
-if(strcmp($day,"Sun")==0){
-    if(strcmp($time,"8:00am")==0){
-        $th="hall11";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall12";
-    }
-    else{
-        $th="hall13";
-    }
-
-}
-else if(strcmp($day,"Sun")==0){
-    if(strcmp($time,"8:00am")==0){
-        $th="hall21";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall22";
-    }
-    else{
-        $th="hall23";
-    }
-}
-else if(strcmp($day,"Mon")==0){
-    if(strcmp($time,"8:00am")==0){
-        $th="hall31";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall32";
-    }
-    else{
-        $th="hall33";
-    }
-}
-else if(strcmp($day,"Tue")==0){
-    if(strcmp($time,"8:00am")==0){
-        $th="hall41";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall42";
-    }
-    else{
-        $th="hall43";
-    }
-}
-else if(strcmp($day,"Thu")==0){
-    if(strcmp($time,"8:00am")==0){
-        $th="hall51";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall52";
-    }
-    else{
-        $th="hall53";
-    }
-}
-else if(strcmp($day,"Fri")==0){
-    if(strcmp($time,"8:00am")==0){
-        $th="hall61";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall62";
-    }
-    else{
-        $th="hall63";
-    }
-}
-else{
-    if(strcmp($time,"8:00am")==0){
-        $th="hall71";
-    }
-    else if(strcmp($time,"11:00am")==0){
-        $th="hall72";
-    }
-    else{
-        $th="hall73";
-    }
-}
-
 $username=$_SESSION['username'];
-?>
 
+?>
   </head>
   <body>
     
@@ -146,6 +64,15 @@ $username=$_SESSION['username'];
     <div class="container">
       <div class="screen"></div>
 <?php
+	$show=$conn->query("select showOrderId from showorder where movieName='".$movieName."' and date='".$date."' and timeslot='".$time."' and theater='".$theater."'");
+    while ($showTime=$show->fetch_object()) {
+      $showOrderId=$showTime->showOrderId;
+       
+    } 
+ 
+   
+  
+        
 $te="";
 for($i=1; $i<=4; $i++){
 	if($i==1)
@@ -158,24 +85,27 @@ for($i=1; $i<=4; $i++){
 	$te="D";?>
 <div class="row">
 <?php for($j=1; $j<=9; $j++){
-
+      
 		$time1=$te.$j;
-		$sql="select * from ".$th." where seatnumber='$time1' ";
+		$sql="select * from hall where showOrderId='".$showOrderId."' and seat='".$time1."'";
 		$result= mysqli_query($conn, $sql);
 		$res=mysqli_fetch_assoc($result);
-		if($res['name']=="notbooked"){
+		if($res)
+        {
 			?>
-			<div class="seat">  </div>
+			<div class="seat occupied"></div>
 			
 			<?php
 		}
 		else{
 			?>
-			<div class="seat occupied"></div>
+            <div class="seat">  </div>
+			
 			<?php
 		}   
+    
          ?>
-         <!-- <div id="seats"><?php echo $time1?></div> -->
+         
 	<?php
     }
 
@@ -191,9 +121,7 @@ for($i=1; $i<=4; $i++){
 	
 	echo "<form action='ticketConfirmation.php' method='post' >
 	 					<input type='hidden' name='movieId' value='".$movieId."'>
-						<input type='hidden' name='date' value='".$date."'>
-						<input type='hidden' name='timeSlot' value='".$time."'>
-						<input type='hidden' name='theater' value='".$theater."'>
+                        <input type='hidden' name='showOrderId' value='".$showOrderId."'>
 						<input type='hidden' name='count' id='count' value=''>
 						<input type='hidden' name='seat' id='seat' value=''>
                         <input type='submit'  class='btn btn-primary btn-xs btn-block' type='submit' value='Confirm Ticket' name='submit'>

@@ -140,7 +140,7 @@ a:visited {
 														} ?> 
 													</select></td>
 												</tr>
-												
+												<input type="hidden" name="movieName" value="<?php echo $movieName; ?>">
 
 											
 															<tr>

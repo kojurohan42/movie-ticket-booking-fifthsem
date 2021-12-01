@@ -32,15 +32,12 @@ include_once 'header.php';
 
 	<?php 
 	$movieId=$_POST['movieId'];
+	$showOrderId=$_POST['showOrderId'];
 
-	$date=$_POST['date'];
-	
-	$time=$_POST['timeSlot'];
-	
-	$theater=$_POST['theater'];
 
 	$count=$_POST['count'];
 
+	
 	$seat=$_POST['seat'];
 	$seat_ar = explode(',', $seat);
 	$seat_tr=array();
@@ -65,16 +62,14 @@ include_once 'header.php';
 	
 	$showOrder="";
 	$seatnumber="";//id of reducing seat
-	$sql="select count(seatnumber) from hall2 where name='".$username."';";
-	$result=mysqli_query($con,$sql);
-	$row = mysqli_fetch_array($result);
-	$seatCount=$row[0];
-	$seatCountnum=intval($seatCount);  
+	
 
-	     $res=$conn->query("select * from hall2  where name='".$username."';");
-          while ($row=$res->fetch_object()) {
-          	$seatnumber.=$row->seatnumber.",";
-	}
+	
+	
+	 
+	$showtime=$conn->query("select * from showorder where showOrderId='$showOrderId';");
+	$show=$showtime->fetch_object();
+	
 	$movieIdentity=$conn->query("select * from movielist where movieId=$movieId;");
 	$row=$movieIdentity->fetch_object();
 $movieName=$row->Name;	
@@ -107,7 +102,7 @@ $movieName=$row->Name;
 
 									<tr>
 										<td><strong>Date </strong></td>
-										<td><?php echo "".$date ?> </td>
+										<td><?php echo "".$show->date; ?> </td>
 									</tr>
 									<tr>
 										<td><strong>Movie Name </strong></td>
@@ -115,11 +110,11 @@ $movieName=$row->Name;
 									</tr>
 									<tr>
 										<td><strong>Time </strong></td>
-										<td><?php echo "". $time?></td>
+										<td><?php echo "". $show->timeslot;?></td>
 									</tr>
 									<tr>
 										<td><strong>Movie Name </strong></td>
-										<td><?php echo "". $theater?></td>
+										<td><?php echo "". $show->theater;?></td>
 									</tr>
 									<tr>
 										<td><strong>Seat Booked </strong></td>
@@ -136,7 +131,7 @@ $movieName=$row->Name;
 									</tr>
 									<tr>
 										<td><strong>Ticket Price </strong></td>
-										<td> <?php $ticketprice=$count*300;
+										<td> <?php $ticketprice=$count*$show->price;
 										echo $ticketprice?> </td>
 									</tr>
 								</table>
@@ -148,16 +143,16 @@ $movieName=$row->Name;
 										<input type="hidden" name="showOrderId" value=<?php echo '"'.$showOrder.'"'; ?>>
 
 
-										<input type="hidden" name="date" value=<?php echo '"'.$date.'"'; ?>>
+										<input type="hidden" name="date" value=<?php echo '"'.$show->date.'"'; ?>>
 
-										<input type="hidden" name="time" value=<?php echo '"'.$time.'"'; ?>>
+										<input type="hidden" name="time" value=<?php echo '"'.$show->timeslot.'"'; ?>>
 
-										<input type="hidden" name="theater" value=<?php echo '"'.$theater.'"'; ?>>
+										<input type="hidden" name="theater" value=<?php echo '"'.$show->theater.'"'; ?>>
 
-										<input type="hidden" name="seat" value=<?php echo '"'.$seatCount.'"'; ?>>
+										<input type="hidden" name="seat" value=<?php echo '"'.$count.'"'; ?>>
 										<input type="hidden" name="seatnumber" value=<?php echo '"'.$seatnumber.'"'; ?>>
 										<input type="hidden" name="ticketprice" value=<?php echo '"'.$ticketprice.'"'; ?>>
-
+									
 
 										<tr>
 											<td colspan="2" width="100%">
