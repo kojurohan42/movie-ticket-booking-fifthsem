@@ -1,5 +1,7 @@
 <?php 
 include_once 'header.php'; 
+
+include 'setting.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +76,25 @@ include_once 'header.php';
 	
 	$movieIdentity=$conn->query("select * from movielist where movieId=$movieId;");
 	$row=$movieIdentity->fetch_object();
-$movieName=$row->Name;	
+    $movieName=$row->Name;	
+
+	$user=$username;
+    $tseat=$count;
+    $amt=$count*300;
+    $txamt=$amt*0.13;
+    $pdc=0;
+    $psc=$amt*0.01;
+    $tamt=$amt+$txamt+$psc+$pdc;
+
+    //for time user had bought ticket
+    date_default_timezone_set("Asia/Kathmandu");
+    $DT =date( "G:i");
+    $_SESSION['time']=$DT;
+
+    $sqli = "INSERT INTO esewa (username, t_seat, amt, tx_amt, psd, pdc, t_amt,tm) VALUES ('$user', '$tseat', '$amt', '$txamt', '$psc', '$pdc' ,'$tamt','$DT')";
+	if ($conn->query($sqli) === FALSE) {
+    echo "Error: " . $sqli . "<br>" . $conn->error;
+    }
 
 ?>
 <div class="container">
@@ -138,23 +158,27 @@ $movieName=$row->Name;
 									</tr>
 								</table>
 								<table>
-									<form action="ticketprint.php" method="post">
+								<form action=<?php echo $epay_url?> method="POST">
 										<?php 
 										$_SESSION['showOrderId']=$showOrderId;
 										$_SESSION['seats']=$seat_ar;
+										$_SESSION['seatnum']=$seatnumber;
 
 										?>
+										  <input value="<?php echo $tamt?>" name="tAmt" type="hidden">
+												    <input value="<?php echo $amt?>" name="amt" type="hidden">
+												    <input value="<?php echo $txamt?>" name="txAmt" type="hidden">
+												    <input value="<?php echo $psc?>" name="psc" type="hidden">
+												    <input value="<?php echo $pdc?>" name="pdc" type="hidden">
+												    <input value=<?php echo $merchant_code?>  name="scd" type="hidden">
+												    <input value="<?php echo $pid?>" name="pid" type="hidden">
+												    <input value=<?php echo $successurl?> type="hidden" name="su">
+												    <input value=<?php echo $failedurl?> type="hidden" name="fu">
+												    <input value="Confirm & Buy Ticket" type="submit" class="btn btn-primary">
 										
-										<input type="hidden" name="seat" value=<?php echo '"'.$count.'"'; ?>>
-										<input type="hidden" name="seatnumber" value=<?php echo '"'.$seatnumber.'"'; ?>>
-										<input type="hidden" name="ticketprice" value=<?php echo '"'.$ticketprice.'"'; ?>>
-									
+										
 
-										<tr>
-											<td colspan="2" width="100%">
-												<input class="btn btn-primary btn-xs btn-block" type="submit" name="submit" value="Pay with esewa">
-											</td>
-										</td>
+										
 									</form>
 								</tbody>
 							</table>
@@ -166,6 +190,10 @@ $movieName=$row->Name;
 	</div>
 </div>
 
+
+
 </body>
 
 </html>
+
+
