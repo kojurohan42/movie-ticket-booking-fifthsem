@@ -1,5 +1,5 @@
-<?php 
-include_once 'header.php'; 
+<?php
+ include_once 'header.php'; 
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,51 +12,65 @@ include_once 'header.php';
 </head>
 <body>
 <?php
-$username=$_SESSION['username'];
-$seats=$_SESSION['seats'];
-		
-$showOrderId=$_SESSION['showOrderId'];
-foreach($seats as $seat){
-$sql=("insert into hall (showOrderId, username, seat) values('$showOrderId','$username','$seat')");
-mysqli_query($conn, $sql);}
-$showtime=$conn->query("select * from showorder where showOrderId='$showOrderId';");
-$show=$showtime->fetch_object();
+$tim=$_GET['time'];
 
+$result=$conn->query("select * from esewa where tm='".$tim."';");
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $name=$row["username"];
+    $seatnumber=$row["t_seat"];
+    $ticketprice=$row["t_amt"];
+  }
+
+
+$movieId=$_SESSION['movieId'];
+$movieIdentity=$conn->query("select * from movielist where movieId=$movieId;");
+$row=$movieIdentity->fetch_object();
+$movieName=$row->Name;
+
+	
+$Identity=$conn->query("select * from showorder where movieName='".$movieName."';");
+$rows=$Identity->fetch_object();	
+$theater=$rows->theater;
+$date=$rows->date;
+$times=$rows->timeslot;
+
+	 
 echo "<h3>Future Cinemas</h3>
-<p>Kathmandu,Nepal</p>
+<p>Kathmandu,Nepal</p> 
 <p>989898989</p>
 <table>
 <tr>
 <td>Username:</td>
-<td>".$username."</td>
+<td>".$name."</td>
 </tr>
 <tr>
 <td>Movie name:</td>
-<td>".$show->movieName."</td>
+<td>".$movieName."</td>
 </tr>
 <tr>
 <td>Theater:</td>
-<td>".$show->theater."</td>
+<td>".$theater."</td>
 </tr>
 <tr>
 <td>Date:</td>
-<td>".$show->date."</td>
+<td>".$date."</td>
 </tr>
 <tr>
 <td>Time:</td>
-<td>".$show->timeslot."</td>
+<td>".$times."</td>
 </tr>
 <tr>
 <td>No of seats:</td>
-<td>".$_POST['seat']."</td>
+<td>".$seatnumber."</td>
 </tr>
 <tr>
 <td>Seat no.:</td>
-<td>".$_POST['seatnumber']."</td>
+<td>".$_SESSION['seatnum']."</td>
 </tr>
 <tr>
 <td>Ticket Price:</td>
-<td>".$_POST['ticketprice']."</td>
+<td>".$ticketprice."</td>
 </tr>
 
 </table>
