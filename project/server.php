@@ -98,7 +98,7 @@ if (isset($_POST["verify_email"]))
  $query= "SELECT * FROM users WHERE otp='$otp'";
  $results= mysqli_query($db, $query);
  if(mysqli_num_rows($results) ==1){
-  $query= "UPDATE users SET verification_status='1' WHERE email = "$email" AND otp= "$otp";
+  $query= "UPDATE users SET verification_status='1' WHERE email = '" .$email."' AND otp= '" .$otp. "'";
   $_SESSION['username'] = $username;
   $_SESSION['success'] = "Your email is verified";
   header('location: login.php');
