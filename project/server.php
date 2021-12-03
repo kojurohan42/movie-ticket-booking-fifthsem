@@ -45,13 +45,14 @@ if (isset($_POST['reg_user'])) {
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
   	$password = md5($password_1);//encrypt the password before saving in the database
+    $otp=$_SESSION['otp'];
 
-  	$query = "INSERT INTO users (username, email, password) 
-  			  VALUES('$username', '$email', '$password')";
+  	$query = "INSERT INTO users (username, email, password,otp) 
+  			  VALUES('$username', '$email', '$password', '$otp')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
-  	header('location: index.php');
+  	header('location: email_verify.php');
   }
 }
 
@@ -90,5 +91,21 @@ if (isset($_POST['login_user'])) {
     }
   }
 }
+//Email_verify
+if (isset($_POST["verify_email"]))
+{
+  $otp=$_SESSION['otp'];
+ $query= "SELECT * FROM users WHERE otp='$otp'";
+ $results= mysqli_query($db, $query);
+ if(mysqli_num_rows($results) ==1){
+  $query= "UPDATE users SET verification_status='1' WHERE email = '" .$email."' AND otp= '" .$otp. "'";
+  $_SESSION['username'] = $username;
+  $_SESSION['success'] = "Your email is verified";
+  header('location: login.php');
+}
+else{
+  array_push($errors,"Your otp in invalid");
+}
 
+}
 ?>
