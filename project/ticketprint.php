@@ -1,5 +1,5 @@
-<?php 
-include_once 'header.php'; 
+<?php
+ include_once 'header.php'; 
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,57 +12,31 @@ include_once 'header.php';
 </head>
 <body>
 <?php
-$username=$_SESSION['username'];
-$seats=$_SESSION['seats'];
-		
-$showOrderId=$_SESSION['showOrderId'];
-foreach($seats as $seat){
-$sql=("insert into hall (showOrderId, username, seat) values('$showOrderId','$username','$seat')");
-mysqli_query($conn, $sql);}
-$showtime=$conn->query("select * from showorder where showOrderId='$showOrderId';");
-$show=$showtime->fetch_object();
+$tim=$_GET['time'];
 
-echo "<h3>Future Cinemas</h3>
-<p>Kathmandu,Nepal</p>
-<p>989898989</p>
-<table>
-<tr>
-<td>Username:</td>
-<td>".$username."</td>
-</tr>
-<tr>
-<td>Movie name:</td>
-<td>".$show->movieName."</td>
-</tr>
-<tr>
-<td>Theater:</td>
-<td>".$show->theater."</td>
-</tr>
-<tr>
-<td>Date:</td>
-<td>".$show->date."</td>
-</tr>
-<tr>
-<td>Time:</td>
-<td>".$show->timeslot."</td>
-</tr>
-<tr>
-<td>No of seats:</td>
-<td>".$_POST['seat']."</td>
-</tr>
-<tr>
-<td>Seat no.:</td>
-<td>".$_POST['seatnumber']."</td>
-</tr>
-<tr>
-<td>Ticket Price:</td>
-<td>".$_POST['ticketprice']."</td>
-</tr>
+$result=$conn->query("select * from esewa where tm='".$tim."';");
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $name=$row["username"];
+    $seatnumber=$row["t_seat"];
+    $ticketprice=$row["t_amt"];
+    $userId=$row["pid"];
+  }
+echo $userId; 
 
-</table>
- 
-"; 
-?>
+$movieId=$_SESSION['movieId'];
+$movieIdentity=$conn->query("select * from movielist where movieId='".$movieId."'");
+$row=$movieIdentity->fetch_object();
+$movieName=$row->Name;
+
+	
+$Identity=$conn->query("select * from showorder where movieName='".$movieName."';");
+$rows=$Identity->fetch_object();	
+$theater=$rows->theater;
+$date=$rows->date;
+$times=$rows->timeslot;
+
+header("Location:barcode.php?username=".$name."& moviename=".$movieName." & theater=".$theater."  & date=".$date." & time=".$times." & nseat=".$seatnumber." & seatnum=".$_SESSION['seatnum']." & tprice=".$ticketprice." & userId=".$userId."");?>
 <div class="text-center">
         <button onclick="window.print();" class="btn btn-primary" id="print-btn">Print</button>
       </div>
