@@ -1,4 +1,70 @@
-<?php include('server.php') ?>
+<?php 
+
+$otp=rand(11111,99999);
+include('server.php'); 
+
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    require 'C:/xamp/htdocs/Email/mail/Exception.php';
+    require 'C:/xamp/htdocs/Email/mail/PHPMailer.php';
+    require 'C:/xamp/htdocs/Email/mail/SMTP.php';
+//session_start();
+$con=mysqli_connect('localhost','root','','project_movie');
+$email="rukesh.shrestha545@gmail.com";
+function debugger($data,$is_die=false){
+	echo "</pre>";
+	print_r($data);
+	echo"<pre>";
+	if($is_die) {
+		exit();
+	}
+//$_POST['email'];
+
+}
+// debugger($_POST,true);
+$res=mysqli_query($con,"select * from users where email='$email'");
+$count=mysqli_num_rows($res);
+if($count>0){
+	//$otp=rand(11111,99999);
+	mysqli_query($con,"update users  where email='$email'");
+	$html="Your otp code for email verification is: " .$otp;
+	
+
+	$_SESSION['EMAIL']=$email;
+	$_SESSION['otp']=$otp;
+
+	smtp_mailer($email,'OTP Verification',$html);
+	//echo "yes";
+}
+// else{
+// 	echo "not_exist";
+// }
+
+function smtp_mailer($to,$subject, $msg){
+	require_once("smtp/class.phpmailer.php");
+	$mail = new PHPMailer(); 
+	$mail->IsSMTP(); 
+	$mail->SMTPDebug = 1; 
+	$mail->SMTPAuth = true; 
+	$mail->SMTPSecure = 'TLS'; 
+	$mail->Host = "smtp.gmail.com";
+	$mail->Port = 587; 
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
+	$mail->Username = "rukesh639@gmail.com";
+	$mail->Password = "ruk9860@1";
+	$mail->SetFrom("rukesh639@gmail.com");
+	$mail->Subject = $subject;
+	$mail->Body =$msg;
+	$mail->AddAddress($_POST['email']);
+	if(!$mail->Send()){
+		return 0;
+	}else{
+		return 1;
+	}
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +72,15 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<
   <div class="header">
-  	<h2>Register</h2>
+	  <div class="left">
+	  <img padding-top = "5px" align="left" src= "img\logo.png" width= "250px" height= "100px">
+</div>
+  	<h2 >Registeration Form</h2>
   </div>
 	
-  <form method="post" action="register.php"  style=" width: 30%;
-  margin: 50px auto 0px;">
+  <form action="" method="POST"   style=" width: 30%; margin: 50px auto 0px;">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>Username</label>
@@ -21,6 +90,8 @@
   	  <label>Email</label>
   	  <input type="email" name="email" value="<?php echo $email; ?>">
   	</div>
+	  
+
   	<div class="input-group">
   	  <label>Password</label>
   	  <input type="password" name="password_1">
@@ -33,9 +104,7 @@
   	  <button type="submit" class="btn" name="reg_user">Register</button>
   	</div>
   	<p>
-  		Already a member? <a href="login.php">Sign in</a>
-		  Hello.. This is me Rukesh Shrestha.
-		  
+  		Already a member? <a href="login.php">Login To Royal Movie Theatre</a>
   	</p>
   </form>
 </body>
