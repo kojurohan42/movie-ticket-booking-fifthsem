@@ -35,6 +35,7 @@
   	<p>
   		Already a member? <a href="login.php">Sign in</a>
 		  Hello.. This is me Rukesh Shrestha.
+		  My name is Rukesh Shrestha.
   	</p>
   </form>
 </body>
