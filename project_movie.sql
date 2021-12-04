@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 01, 2021 at 09:57 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.4.0
+-- Host: 127.0.0.1
+-- Generation Time: Dec 04, 2021 at 05:06 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,14 +27,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
@@ -50,9 +47,8 @@ INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
 -- Table structure for table `esewa`
 --
 
-DROP TABLE IF EXISTS `esewa`;
-CREATE TABLE IF NOT EXISTS `esewa` (
-  `pid` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `esewa` (
+  `pid` int(5) NOT NULL,
   `username` varchar(50) NOT NULL,
   `t_seat` int(100) NOT NULL,
   `amt` int(30) NOT NULL,
@@ -60,9 +56,8 @@ CREATE TABLE IF NOT EXISTS `esewa` (
   `psd` int(10) NOT NULL,
   `pdc` int(23) DEFAULT 0,
   `t_amt` int(30) NOT NULL,
-  `tm` varchar(11) NOT NULL,
-  PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4;
+  `tm` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `esewa`
@@ -105,7 +100,12 @@ INSERT INTO `esewa` (`pid`, `username`, `t_seat`, `amt`, `tx_amt`, `psd`, `pdc`,
 (87, 'admin', 7, 2100, 273, 21, 0, 2394, '16:42'),
 (88, 'admin', 7, 2100, 273, 21, 0, 2394, '16:51'),
 (89, 'admin', 7, 2100, 273, 21, 0, 2394, '16:53'),
-(90, 'admin', 7, 2100, 273, 21, 0, 2394, '13:54');
+(90, 'admin', 7, 2100, 273, 21, 0, 2394, '13:54'),
+(91, 'rukesh', 2, 1400, 182, 14, 0, 1596, '9:23'),
+(92, 'rukesh', 2, 1400, 182, 14, 0, 1596, '10:45'),
+(93, 'user', 2, 1000, 130, 10, 0, 1140, '14:51'),
+(94, 'khusu', 1, 700, 91, 7, 0, 798, '21:33'),
+(95, 'user', 1, 500, 65, 5, 0, 570, '21:44');
 
 -- --------------------------------------------------------
 
@@ -113,14 +113,12 @@ INSERT INTO `esewa` (`pid`, `username`, `t_seat`, `amt`, `tx_amt`, `psd`, `pdc`,
 -- Table structure for table `hall`
 --
 
-DROP TABLE IF EXISTS `hall`;
-CREATE TABLE IF NOT EXISTS `hall` (
-  `seat|_id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hall` (
+  `seat|_id` int(100) NOT NULL,
   `showOrderId` int(100) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `seat` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`seat|_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `seat` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hall`
@@ -129,7 +127,9 @@ CREATE TABLE IF NOT EXISTS `hall` (
 INSERT INTO `hall` (`seat|_id`, `showOrderId`, `username`, `seat`) VALUES
 (1, 21, 'user', 'A6'),
 (2, 21, 'user', 'B6'),
-(3, 21, 'user', 'B5');
+(3, 21, 'user', 'B5'),
+(4, 19, 'user', 'A4'),
+(5, 19, 'user', 'A5');
 
 -- --------------------------------------------------------
 
@@ -137,9 +137,8 @@ INSERT INTO `hall` (`seat|_id`, `showOrderId`, `username`, `seat`) VALUES
 -- Table structure for table `movielist`
 --
 
-DROP TABLE IF EXISTS `movielist`;
-CREATE TABLE IF NOT EXISTS `movielist` (
-  `movieId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `movielist` (
+  `movieId` int(11) NOT NULL,
   `Name` varchar(200) NOT NULL,
   `Genre` varchar(100) NOT NULL,
   `Director` varchar(100) NOT NULL,
@@ -147,9 +146,8 @@ CREATE TABLE IF NOT EXISTS `movielist` (
   `image` varchar(200) NOT NULL,
   `imdb` varchar(100) NOT NULL,
   `image2` varchar(50) NOT NULL,
-  `trailerLink` varchar(100) NOT NULL,
-  PRIMARY KEY (`movieId`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+  `trailerLink` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `movielist`
@@ -169,16 +167,14 @@ INSERT INTO `movielist` (`movieId`, `Name`, `Genre`, `Director`, `Description`, 
 -- Table structure for table `showorder`
 --
 
-DROP TABLE IF EXISTS `showorder`;
-CREATE TABLE IF NOT EXISTS `showorder` (
-  `showOrderId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `showorder` (
+  `showOrderId` int(11) NOT NULL,
   `date` date NOT NULL,
   `timeslot` varchar(255) NOT NULL,
   `theater` varchar(255) NOT NULL,
   `movieName` varchar(255) NOT NULL,
-  `price` int(11) DEFAULT NULL,
-  PRIMARY KEY (`showOrderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+  `price` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `showorder`
@@ -194,30 +190,103 @@ INSERT INTO `showorder` (`showOrderId`, `date`, `timeslot`, `theater`, `movieNam
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `otp` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'mrsolo42', 'kojurohan42@gmail.com', '6dbb6190153131470d701c8c2fe19db7'),
-(2, 'user', 'kojurohan42@gmil.com', 'ee11cbb19052e40b07aac0ca060c23ee'),
-(3, 'user2', 'user2@gmail.com', '7e58d63b60197ceb55a1c487989a3720'),
-(4, 'Sujan_khusu', 'khususujan00@gmail.com', '271e7c94716d4e800829c6affe68e866'),
-(5, 'rock', 'khususujan000@gmail.com', 'ed1f9f0a72aab5a39c34f2626519f2c2'),
-(6, 'admin', 'rozanrock12@gmail.com', '47558c0c6cbe52bb3c48ee8b985d6ea7'),
-(7, 'this', 'this123@gmail.com', '472432dfe0a9cdcb9846da71098c6ddc'),
-(8, 'that', 'that123@gmail.com', 'ee43c2eea2d6a24278db8ebc02efae84'),
-(9, 'Dummy', 'Dummy123@gmail.com', '851fdee206c1eec10cee5ec8e8962af2'),
-(10, 'ram', 'ram123@gmail.com', '6a557ed1005dddd940595b8fc6ed47b2');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `otp`) VALUES
+(23, 'kusmadon', 'urusakusma@gmail.com', '89408677e28109394470f4db8f722ba0', '56216'),
+(44, 'rukesh', 'rukesh.shrestha545@gmail.com', '58157a158dbb6b384fc179d2bac65295', '13032'),
+(45, 'user', 'kojurohan24@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', '86561'),
+(46, 'khusu', 'khususujan00@gmail.com', 'deea473c3db265290360940fa73d505f', '29004');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `esewa`
+--
+ALTER TABLE `esewa`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- Indexes for table `hall`
+--
+ALTER TABLE `hall`
+  ADD PRIMARY KEY (`seat|_id`);
+
+--
+-- Indexes for table `movielist`
+--
+ALTER TABLE `movielist`
+  ADD PRIMARY KEY (`movieId`);
+
+--
+-- Indexes for table `showorder`
+--
+ALTER TABLE `showorder`
+  ADD PRIMARY KEY (`showOrderId`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `esewa`
+--
+ALTER TABLE `esewa`
+  MODIFY `pid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
+--
+-- AUTO_INCREMENT for table `hall`
+--
+ALTER TABLE `hall`
+  MODIFY `seat|_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `movielist`
+--
+ALTER TABLE `movielist`
+  MODIFY `movieId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `showorder`
+--
+ALTER TABLE `showorder`
+  MODIFY `showOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
