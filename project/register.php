@@ -1,5 +1,5 @@
 <?php 
-
+error_reporting(0);
 $otp=rand(11111,99999);
 include('server.php'); 
 
@@ -72,7 +72,7 @@ function smtp_mailer($to,$subject, $msg){
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<
+	
   <div class="header">
 	  
   	<h2 >Registration Form</h2>

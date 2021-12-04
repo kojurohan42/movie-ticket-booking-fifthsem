@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 include_once 'header.php'; 
 
 include 'setting.php';
