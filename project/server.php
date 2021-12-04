@@ -91,22 +91,20 @@ if (isset($_POST['login_user'])) {
     }
   }
 }
-//Email_verify
-// if (isset($_POST["verify_email"]))
-// {
-//   $otp=$_SESSION['otp'];
-//  $query= "SELECT * FROM users WHERE otp='$otp'";
-//  $results= mysqli_query($db, $query);
-//  if(mysqli_num_rows($results) ==1){
-//   $query= "UPDATE users SET verification_status='1' WHERE email = '" .$email."' AND otp= '" .$otp. "'";
-// mysqli_query($db, $query); 
-//   $_SESSION['username'] = $username;
-//   $_SESSION['success'] = "Your email is verified";
-//   header('location: login.php');
-// }
-// else{
-//   array_push($errors,"Your otp in invalid");
-// }
+//  Email_verify
+if (isset($_POST["verify_email"]))
+{
+  $otp=$_SESSION['otp'];
+ $query= "SELECT * FROM users WHERE otp='$otp'";
+ $results= mysqli_query($db, $query);
+ if(mysqli_num_rows($results) ==1){
+  $_SESSION['username'] = $username;
+  $_SESSION['success'] = "Your email is verified";
+  header('location: login.php');
+}
+else{
+  array_push($errors,"Your otp in invalid");
+}
 
-// }
+}
 ?>

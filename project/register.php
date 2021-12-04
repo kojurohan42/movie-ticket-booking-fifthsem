@@ -6,9 +6,9 @@ include('server.php');
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-    require 'C:/xamp/htdocs/movie-ticket-booking-fifthsem/project/mail/Exception.php';
-    require 'C:/xamp/htdocs/movie-ticket-booking-fifthsem/project/mail/PHPMailer.php';
-    require 'C:/xamp/htdocs/movie-ticket-booking-fifthsem/project/mail/SMTP.php';
+    require 'C:\xampp\htdocs\movie-ticket-booking-fifthsem\project\mail\Exception.php';
+    require 'C:\xampp\htdocs\movie-ticket-booking-fifthsem\project\mail\PHPMailer.php';
+    require 'C:\xampp\htdocs\movie-ticket-booking-fifthsem\project\mail\SMTP.php';
 //session_start();
 $con=mysqli_connect('localhost','root','','project_movie');
 $email="rukesh.shrestha545@gmail.com";
@@ -74,10 +74,8 @@ function smtp_mailer($to,$subject, $msg){
 <body>
 	<
   <div class="header">
-	  <div class="left">
-	  <img padding-top = "5px" align="left" src= "img\logo.png" width= "250px" height= "100px">
-</div>
-  	<h2 >Registeration Form</h2>
+	  
+  	<h2 >Registration Form</h2>
   </div>
 	
   <form action="" method="POST"   style=" width: 30%; margin: 50px auto 0px;">
@@ -104,7 +102,7 @@ function smtp_mailer($to,$subject, $msg){
   	  <button type="submit" class="btn" name="reg_user">Register</button>
   	</div>
   	<p>
-  		Already a member? <a href="login.php">Login To Royal Movie Theatre</a>
+  		Already a member? <a href="login.php">Login</a>
   	</p>
   </form>
 </body>
