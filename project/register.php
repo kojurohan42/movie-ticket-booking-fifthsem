@@ -6,9 +6,9 @@ include('server.php');
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-    require 'C:/xamp/htdocs/Email/mail/Exception.php';
-    require 'C:/xamp/htdocs/Email/mail/PHPMailer.php';
-    require 'C:/xamp/htdocs/Email/mail/SMTP.php';
+    require 'C:/xamp/htdocs/movie-ticket-booking-fifthsem/project/mail/Exception.php';
+    require 'C:/xamp/htdocs/movie-ticket-booking-fifthsem/project/mail/PHPMailer.php';
+    require 'C:/xamp/htdocs/movie-ticket-booking-fifthsem/project/mail/SMTP.php';
 //session_start();
 $con=mysqli_connect('localhost','root','','project_movie');
 $email="rukesh.shrestha545@gmail.com";
