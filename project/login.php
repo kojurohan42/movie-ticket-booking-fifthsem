@@ -16,7 +16,7 @@
     <div class="loginbox">
     
     
-    <img src="img\avatar.png" alt="login" class="avatar">
+    <img src="img/avatar.png" alt="login" class="avatar">
     
 
        <h1>User Login </h1>
