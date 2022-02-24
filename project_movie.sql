@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 05:06 PM
+-- Generation Time: Feb 24, 2022 at 05:42 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -105,7 +105,42 @@ INSERT INTO `esewa` (`pid`, `username`, `t_seat`, `amt`, `tx_amt`, `psd`, `pdc`,
 (92, 'rukesh', 2, 1400, 182, 14, 0, 1596, '10:45'),
 (93, 'user', 2, 1000, 130, 10, 0, 1140, '14:51'),
 (94, 'khusu', 1, 700, 91, 7, 0, 798, '21:33'),
-(95, 'user', 1, 500, 65, 5, 0, 570, '21:44');
+(95, 'user', 1, 500, 65, 5, 0, 570, '21:44'),
+(96, 'user', 1, 700, 91, 7, 0, 798, '10:38'),
+(97, 'user', 1, 700, 91, 7, 0, 798, '17:31'),
+(98, 'user', 1, 700, 91, 7, 0, 798, '17:31'),
+(99, 'user', 1, 700, 91, 7, 0, 798, '17:32'),
+(100, 'user', 1, 700, 91, 7, 0, 798, '17:36'),
+(101, 'user', 2, 0, 0, 0, 0, 0, '21:25'),
+(102, 'user', 2, 0, 0, 0, 0, 0, '21:32'),
+(103, 'user', 3, 0, 0, 0, 0, 0, '21:32'),
+(104, 'user', 3, 0, 0, 0, 0, 0, '21:33'),
+(105, 'user', 1, 0, 0, 0, 0, 0, '14:11'),
+(106, 'user', 1, 0, 0, 0, 0, 0, '14:12'),
+(107, 'user', 1, 0, 0, 0, 0, 0, '14:13'),
+(108, 'user', 1, 0, 0, 0, 0, 0, '14:13'),
+(109, 'user', 1, 0, 0, 0, 0, 0, '14:13'),
+(110, 'user', 1, 0, 0, 0, 0, 0, '14:14'),
+(111, 'user', 1, 0, 0, 0, 0, 0, '14:14'),
+(112, 'user', 1, 0, 0, 0, 0, 0, '14:15'),
+(113, 'user', 1, 0, 0, 0, 0, 0, '14:40'),
+(114, 'user', 1, 0, 0, 0, 0, 0, '14:41'),
+(115, 'user', 1, 0, 0, 0, 0, 0, '14:41'),
+(116, 'user', 1, 0, 0, 0, 0, 0, '14:42'),
+(117, 'user', 1, 0, 0, 0, 0, 0, '14:42'),
+(118, 'user', 1, 0, 0, 0, 0, 0, '15:37'),
+(119, 'user', 1, 0, 0, 0, 0, 0, '15:37'),
+(120, 'user', 2, 0, 0, 0, 0, 0, '15:41'),
+(121, 'rohan', 3, 0, 0, 0, 0, 0, '15:57'),
+(122, 'rohan', 1, 0, 0, 0, 0, 0, '20:22'),
+(123, 'rohan', 1, 0, 0, 0, 0, 0, '20:23'),
+(124, 'rohan', 1, 0, 0, 0, 0, 0, '20:24'),
+(125, 'rohan', 1, 0, 0, 0, 0, 0, '20:24'),
+(126, 'rohan', 1, 0, 0, 0, 0, 0, '20:59'),
+(127, 'rohan', 1, 0, 0, 0, 0, 0, '20:59'),
+(128, 'rohan', 1, 0, 0, 0, 0, 0, '21:34'),
+(129, 'rohan', 1, 0, 0, 0, 0, 0, '21:42'),
+(130, 'rohan', 1, 0, 0, 0, 0, 0, '22:22');
 
 -- --------------------------------------------------------
 
@@ -154,12 +189,12 @@ CREATE TABLE `movielist` (
 --
 
 INSERT INTO `movielist` (`movieId`, `Name`, `Genre`, `Director`, `Description`, `image`, `imdb`, `image2`, `trailerLink`) VALUES
-(14, 'Cherry', 'Action', 'Joe Russo, Anthony Russo', 'Cherry (Tom Holland) drifts from college dropout to army medic in Iraq-anchored only by his one true love, Emily (Ciara Bravo). But after returning from the war with PTSD, his life spirals into drugs.', 'cherry.jfif', '6.6', '', ''),
-(13, 'Godzilla vs Kong', 'Action', 'Adam Wingard', 'Fearsome monsters Godzilla and King Kong square off in an epic battle for the ages, while humanity looks to wipe out both of the creatures and take back the planet once and for all.', 'godzilla vs. kong.jfif', '7.9', '', ''),
-(15, 'The Old Guard', 'Action', 'Gina Prince-Bythewood', 'A group of mercenaries, all centuries-old immortals with the ablity to heal themselves, discover someone is onto their secret, and they must fight to protect their freedom.', 'oldguard.jfif', '6.6', '', ''),
-(16, 'Free Guy', 'Comedy', 'Shawn Levy', 'A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.', 'freeguy.jfif', '7.5', '', ''),
-(19, 'Venom 2', 'Action', 'Andy Serkis', 'Venom: Let There Be Carnage is an upcoming American superhero film based on the Marvel Comics character Venom, produced by Columbia Pictures in association with Marvel and Tencent Pictures', 'venom2.jfif', '7.5', '', ''),
-(26, 'Spider-Man: No Way Home', 'Action', 'Jon Watts', 'Spider-Man: No Way Home is an upcoming American superhero film based on the Marvel Comics character Spider-Man, co-produced by Columbia Pictures and Marvel Studios, and distributed by Sony Pictures Releasing', 'sp.jpg', '7.5', 'spiderman.jpg', 'https://youtu.be/rt-2cxAiPJk');
+(14, 'Cherry', 'Action', 'Joe Russo, Anthony Russo', 'Cherry (Tom Holland) drifts from college dropout to army medic in Iraq-anchored only by his one true love, Emily (Ciara Bravo). But after returning from the war with PTSD, his life spirals into drugs.', 'cherry.jfif', '6.6', 'cherry2.jpeg.', 'https://www.youtube.com/embed/Nt_wyydppg8'),
+(13, 'Godzilla vs Kong', 'Action', 'Adam Wingard', 'Fearsome monsters Godzilla and King Kong square off in an epic battle for the ages, while humanity looks to wipe out both of the creatures and take back the planet once and for all.', 'godzilla vs. kong.jfif', '7.9', 'god.png', 'https://www.youtube.com/embed/odM92ap8_c0'),
+(15, 'The Old Guard', 'Action', 'Gina Prince-Bythewood', 'A group of mercenaries, all centuries-old immortals with the ablity to heal themselves, discover someone is onto their secret, and they must fight to protect their freedom.', 'oldguard.jfif', '6.6', 'old.jpg', 'https://www.youtube.com/embed/aK-X2d0lJ_s'),
+(16, 'Free Guy', 'Comedy', 'Shawn Levy', 'A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.', 'freeguy.jfif', '7.5', 'free.jpg', 'https://www.youtube.com/embed/X2m-08cOAbc'),
+(19, 'Venom 2', 'Action', 'Andy Serkis', 'Venom: Let There Be Carnage is an upcoming American superhero film based on the Marvel Comics character Venom, produced by Columbia Pictures in association with Marvel and Tencent Pictures', 'venom2.jfif', '7.5', 'venom.jpg', 'https://www.youtube.com/embed/-FmWuCgJmxo'),
+(26, 'Spider-Man: No Way Home', 'Action', 'Jon Watts', 'Spider-Man: No Way Home is an upcoming American superhero film based on the Marvel Comics character Spider-Man, co-produced by Columbia Pictures and Marvel Studios, and distributed by Sony Pictures Releasing', 'sp.jpg', '7.5', 'sp.jpg', 'https://www.youtube.com/embed/JfVOs4VSpmA');
 
 -- --------------------------------------------------------
 
@@ -181,8 +216,10 @@ CREATE TABLE `showorder` (
 --
 
 INSERT INTO `showorder` (`showOrderId`, `date`, `timeslot`, `theater`, `movieName`, `price`) VALUES
-(19, '2021-09-01', '8:00am', 'hall1', 'Godzilla vs Kong', 500),
-(21, '2021-08-31', '8:00am', 'hall2', 'Cherry', 700);
+(23, '2022-03-18', '8:00am', 'hall1', 'Venom 2', 300),
+(24, '2022-03-05', '8:00am', 'hall1', 'Spider-Man: No Way Home', 300),
+(25, '2022-02-26', '8:00am', 'hall1', 'Spider-Man: No Way Home', 300),
+(28, '2022-03-05', '8:00am', 'hall1', 'Cherry', 300);
 
 -- --------------------------------------------------------
 
@@ -205,8 +242,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `otp`) VALUES
 (23, 'kusmadon', 'urusakusma@gmail.com', '89408677e28109394470f4db8f722ba0', '56216'),
 (44, 'rukesh', 'rukesh.shrestha545@gmail.com', '58157a158dbb6b384fc179d2bac65295', '13032'),
-(45, 'user', 'kojurohan24@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', '86561'),
-(46, 'khusu', 'khususujan00@gmail.com', 'deea473c3db265290360940fa73d505f', '29004');
+(46, 'khusu', 'khususujan00@gmail.com', 'deea473c3db265290360940fa73d505f', '29004'),
+(47, 'rohan', 'kojurohan24@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', '30558');
 
 --
 -- Indexes for dumped tables
@@ -262,7 +299,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `esewa`
 --
 ALTER TABLE `esewa`
-  MODIFY `pid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `pid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `hall`
@@ -280,13 +317,13 @@ ALTER TABLE `movielist`
 -- AUTO_INCREMENT for table `showorder`
 --
 ALTER TABLE `showorder`
-  MODIFY `showOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `showOrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
