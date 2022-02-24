@@ -1,65 +1,19 @@
-<?php
-include 'header.php';?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Ticket</title>
-	<link rel="stylesheet" type="text/css" href="css/customerPanel.css">
-
-
-	<style type="text/css">
-		.boxStyle{width: 100%;
-			border: 1px solid #ccc;
-			background: #FFF;
-			margin: 0 0 5px;
-			padding: 10px;
-			font-style: normal;
-			font-variant-ligatures: normal;
-			font-variant-caps: normal;
-			font-variant-numeric: normal;
-			font-weight: 400;
-			font-stretch: normal;
-			font-size: 12px;
-			line-height: 16px;
-			font-family: Roboto, Helvetica, Arial, sans-serif;
-			
-		}
-		a {
-
-  color: black;
-
- padding:5px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-a:hover {
-  background-color: #555;
-}
-
-a:active {
-  background-color: black;
-}
-
-a:visited {
-  background-color: #ccc;
-}
-	</style>
 
 </head>
 <body>
-	<?php include_once 'header.php'; ?>
-	<div class="container">
-		<div class="row">
+	<?php include 'header.php';?>
+
+		<div class="row" >
 			<div class="col-xs-12  toppad" >
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							<?php 
-//for time slot
-							//$timeSlot=$conn->query("select time from timeslot");	
-
-//movie openssl_pkey_get_details(key)
 							$movieId=$_POST['movieId'];	
 							$_SESSION['movieId']=$movieId;
 							$res=$conn->query("select * from movielist where movieId=$movieId;");
@@ -75,7 +29,7 @@ a:visited {
 							<div class="col-md-4 col-lg-4 " align="center">
 								<img alt="User Pic" src=<?php echo '"image/'.$row->image.'"';?> class=" img-responsive"> 
 							</div>
-							<div class=" col-md-8 col-lg-8 "> 
+							<div class=" col-md-8 col-lg-8" style="color:antiquewhite; width:50%; padding-left:250px;"> 
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
@@ -111,7 +65,7 @@ a:visited {
 													<td> <select name="date" class="boxStyle"> 
 														<?php $timeSlot=$conn->query("select date from showorder where movieName='$movieName'");
 														while ($showTime=$timeSlot->fetch_object()) {
-															echo " <option value='".$showTime->date."'>". $showTime->date."</option>
+															echo " <option value='".$showTime->date."' class='op'>". $showTime->date."</option>
 															";
 														} ?> 
 													</select></td>
@@ -123,7 +77,7 @@ a:visited {
 														<select name="theater" class="boxStyle"> 
 														<?php $timeSlot=$conn->query("select theater from showorder where movieName='$movieName'");
 														while ($showTime=$timeSlot->fetch_object()) {
-															echo " <option value='".$showTime->theater."'>". $showTime->theater."</option>
+															echo " <option value='".$showTime->theater."' class='op'>". $showTime->theater."</option>
 															";
 														} ?> 
 														</select>
@@ -135,7 +89,7 @@ a:visited {
 													 		<?php 
 															$timeSlot=$conn->query("select timeslot from showorder where movieName='$movieName'");
 														while ($showTime=$timeSlot->fetch_object()) {
-															echo " <option value='".$showTime->timeslot."'>". $showTime->timeslot."</option>
+															echo " <option value='".$showTime->timeslot."' style='color:black;''>". $showTime->timeslot."</option>
 															";
 														} ?> 
 													</select></td>
@@ -165,7 +119,6 @@ a:visited {
 						</div>
 					</div>
 
-				</div>
 
 			</div>
 		</body>

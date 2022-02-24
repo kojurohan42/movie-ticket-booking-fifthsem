@@ -14,29 +14,37 @@
 <!DOCTYPE html>
 <html>
 <head>
- 
-  <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="style2.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>Home</title>
 
-  </head>
+  <link rel="stylesheet" href="css/astyle.css">
+  <link href="css/block.css" rel='stylesheet' type='text/css' />
+  <link href="css/rotating-card.css" rel="stylesheet">
+  <link href="css/newstyle.css" rel="stylesheet">
+</head>
 <body>
-  <div class="topnav">
-  <a >Future Cinemas</a>
-  <a class="active" href="log.php">Home</a>
-  <a href="myticket.php">My Tickets</a>
-  <a href="showorder.php">Schedule</a>
-  <a href="#bottom">Contact</a>
-
-  <div class="login-container">
-      <a href="login.php"><?php echo $_SESSION['username']; ?></a> 
-      <a href="logout.php?logout='1'" style="color: red;">logout</a>
-    <br>
-<br>
-  </div>
-</div>
-
+<div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">Future Cinemas</h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item active"><a link href="log.php">Home</a></li>
+                    <li class="menu-list-item"><a link href="myticket.php">My Tickets</a></li>
+                    <li class="menu-list-item"><a href="showorder.php">Schedule</a></li>
+                    <li class="menu-list-item"><a link href="#bottom">Contact</a></li>
+                </ul>
+            </div>
+            <div class="profile-container">
+                <div class="profile-text-container">
+                    <ul class="profile-list">
+                        <li class="profile-list-item"><a href="login.php"><?php echo $_SESSION['username']; ?></a> </li>
+                        <li class="profile-list-item"><a href="logout.php?logout='1'" style="color: red;">logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+		
 </body>
 </html>

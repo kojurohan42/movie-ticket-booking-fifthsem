@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style3.css" />
+    <link rel="stylesheet" href="css/style3.css" />
 	<style>
 		.wrapper{
 		display:grid;
@@ -64,9 +64,10 @@ $username=$_SESSION['username'];
     <div class="container">
       <div class="screen"></div>
 <?php
-	$show=$conn->query("select showOrderId from showorder where movieName='".$movieName."' and date='".$date."' and timeslot='".$time."' and theater='".$theater."'");
+	$show=$conn->query("select showOrderId, price from showorder where movieName='".$movieName."' and date='".$date."' and timeslot='".$time."' and theater='".$theater."'");
     while ($showTime=$show->fetch_object()) {
       $showOrderId=$showTime->showOrderId;
+	  $price = $showTime->price;
        
     } 
  
@@ -120,9 +121,12 @@ for($i=1; $i<=4; $i++){
 	<?php 
 	
 	echo "<form action='ticketConfirmation.php' method='post' >
+						<input type='hidden' name='cost' value='".$price."'>
 	 					<input type='hidden' name='movieId' value='".$movieId."'>
                         <input type='hidden' name='showOrderId' value='".$showOrderId."'>
-						<input type='hidden' name='count' id='count' value=''>
+						<input type='text' name='count' id='count' value=''>
+							
+						<input type='hidden' name='total' id='total' value=''>
 						<input type='hidden' name='seat' id='seat' value=''>
                         <input type='submit'  class='btn btn-primary btn-xs btn-block' type='submit' value='Confirm Ticket' name='submit'>
                       </form>";
@@ -132,7 +136,7 @@ for($i=1; $i<=4; $i++){
 ?>
 
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 	
   </body>
 </html>

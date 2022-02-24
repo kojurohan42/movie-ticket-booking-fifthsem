@@ -88,18 +88,21 @@
        		 </select></td>
 			</tr>
 			<tr>
+				<th>Price</th>
+				<td><input type="text" name="price"></td>
+			</tr>
+			<tr>
 				<input style="font-size: larger;background-color: #c2fbb8;font-family: cursive;font-weight: bold;" 
 				class="MovieGenre" type="submit" name="submit"> 
 			</tr>
 				
-				<p class="copyright"></p>
-				<p></p>
+				
 
 
 			</form>
 			</table>
 			<div class="wrapper">
-				<button class="btn btn-default" onclick="document.location.href='adminpage.php'" > <span class='glyphicon glyphicon-chevron-left'> </span>BACK TO THE ADMIN PAGE</button>
+				<button class="btn btn-default" onclick="document.location.href='admin.php'" > <span class='glyphicon glyphicon-chevron-left'> </span>BACK TO THE ADMIN PAGE</button>
 			</div>
 
 		</div>
@@ -116,11 +119,12 @@ if (isset($_POST['submit'] )&& !empty($_POST['submit']))
   $date=$_POST['date'];
   $timeSlot=$_POST['time'];
   $theater=$_POST['theater'];
- 
+  $pr = $_POST['price'];
+$price = (int)$pr;
   if (!(empty($MovieName) || empty($date) || empty($timeSlot) || empty($theater)))
   {
   
-$sql="insert into showorder (movieName, date, timeslot, theater)values('$MovieName', '$date', '$timeSlot', '$theater')";
+$sql="insert into showorder (movieName, date, timeslot, theater, price)values('$MovieName', '$date', '$timeSlot', '$theater', '$price')";
 mysqli_query($conn, $sql);
 $sql="";
 

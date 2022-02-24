@@ -4,7 +4,7 @@
 <style>
 	h3{
 		color: white; font-weight: bold;
-    font-size: 2vw;"
+    font-size: 2vw;
 	}
 	p{color: white; font-weight: bold;
     font-size: 20px;

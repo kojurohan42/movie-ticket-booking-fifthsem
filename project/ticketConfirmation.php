@@ -39,7 +39,7 @@ include 'setting.php';
 
 
 	$count=$_POST['count'];
-
+	$total = $_POST['total'];
 	
 	$seat=$_POST['seat'];
 	$seat_ar = explode(',', $seat);
@@ -81,7 +81,7 @@ include 'setting.php';
 
 	$user=$username;
     $tseat=$count;
-    $amt=$count*$show->price;
+    $amt=$total;
     $txamt=$amt*0.13;
     $pdc=0;
     $psc=$amt*0.01;
@@ -121,7 +121,7 @@ include 'setting.php';
 						<div class="col-md-4 col-lg-4 " align="center">
 							<img alt="User Pic" src=<?php echo '"image/'.$row->image.'"';?> class="img-responsive"> 
 						</div>
-						<div class=" col-md-8 col-lg-8 "> 
+						<div class=" col-md-8 col-lg-8 " style="color:antiquewhite;"> 
 							<table class="table table-user-information">
 								<tbody>
 

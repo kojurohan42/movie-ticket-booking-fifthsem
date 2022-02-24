@@ -109,10 +109,10 @@ footer {
   .navbar-wrapper {
     margin-top: 0px;
   }
-  .navbar-wrapper .container {
+  /* .navbar-wrapper .container {
     padding-right: 15px;
     padding-left: 15px;
-  }
+  } */
   .navbar-wrapper .navbar {
     padding-right: 0;
     padding-left: 0;

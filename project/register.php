@@ -69,7 +69,7 @@ function smtp_mailer($to,$subject, $msg){
 <html>
 <head>
   <title>Registration system PHP and MySQL</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/rstyle.css">
 </head>
 <body>
 	
