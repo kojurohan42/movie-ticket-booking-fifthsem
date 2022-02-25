@@ -81,7 +81,7 @@ include 'setting.php';
 
 	$user=$username;
     $tseat=$count;
-    $amt=$total;
+    $amt=$show->price * $count;
     $txamt=$amt*0.13;
     $pdc=0;
     $psc=$amt*0.01;
@@ -156,7 +156,7 @@ include 'setting.php';
 									</tr>
 									<tr>
 										<td><strong>Ticket Price </strong></td>
-										<td> <?php $ticketprice=$count*$show->price;
+										<td> <?php $ticketprice=$amt;
 										echo $ticketprice?> </td>
 									</tr>
 								</table>
