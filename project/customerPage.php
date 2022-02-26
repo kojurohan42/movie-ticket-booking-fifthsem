@@ -118,7 +118,10 @@ include 'db.php';
                         <h4 class='text-center' style='color:black;'>".$row->Name ."</h4>
                         <p class='text-center' style='color:black; font-size:15px;'>".$row->Description ." </p>
                       </div>
+
+                      
                       <div style='margin-top: 10vw;' class='buy_ticket'>
+                      
 
                        <form action='ticketProcessing.php' method='post' >
                         <input type='hidden' name='movieId' value='".$row->movieId."' >

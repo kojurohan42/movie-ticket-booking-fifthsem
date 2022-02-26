@@ -23,8 +23,8 @@ $data =[
     echo $response;
  
     curl_close($curl);
-    header("Location: ticketprint.php?time=".$user);
-    //header("location: ticketprint.php")
+    header("Location: ticketprint.php");
+
     
     // if(strpos(  $response, "Success") !== false){
     //     header("Location: https://www.google.com/");

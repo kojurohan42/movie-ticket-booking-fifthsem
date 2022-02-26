@@ -36,6 +36,7 @@ include 'setting.php';
 	<?php 
 	$movieId=$_POST['movieId'];
 	$showOrderId=$_POST['showOrderId'];
+	$_SESSION['showOrderId']=$showOrderId;
 
 
 	$count=$_POST['count'];
@@ -59,7 +60,7 @@ include 'setting.php';
 			$seat_ar[$j]=$st;	
 		$j++;
 	}
-	
+	$_SESSION['seat_ar']=$seat_ar;
 	
 	$username=$_SESSION['username'];
 	

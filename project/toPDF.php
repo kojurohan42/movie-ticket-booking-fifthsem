@@ -48,25 +48,27 @@ $pdf = new PDF('p','in', [4.1,2.9]);
 // Define alias for number of pages
 $pdf->AliasNbPages();
 $pdf->AddPage();
-
-
-for($i = 1; $i <= 2; $i++){
-  $pdf->SetFont('Times','B',7);
-  $pdf->Cell(0, 0.2, 'Seat Info', 0, 0.01,'R');
-  $pdf->Cell(0, 0.1, $_SESSION['seatnum'], 0, 0.01,'R');
-  $pdf->SetFont('Times','',7);
-  $pdf->Cell(0, 0.2, 'UserName :'.$_SESSION['userName'], 0, 0.01,'L');
-  $pdf->Cell(0, 0.2,'theater :' .$_SESSION['theater'],0,0.01,'L');
-  $pdf->Cell(0, 0.2,'No of seats :' .$_SESSION['nseat'],0,0.01,'L');
-  $pdf->Cell(0, 0.2,'Ticket Price :'  .$_SESSION['tprice'],0,0.01,'L');
-  $pdf->Cell(0, 0.2,'User ID :'   .$_SESSION['userId'] ,0,0.01,'L');
-  $pdf->Cell(0, 0.2, 'moviename :'.$_SESSION['moviename'], 0, 0.01,'L');
-  $pdf->Cell(0, 0.2, 'Date  time :'.$_SESSION['date'].$_SESSION['time'], 0, 0.01,'L');
+$showOrderId=$_SESSION['showOrderId'];
+$showtime=$conn->query("select * from showorder where showOrderId='$showOrderId';");
+$show=$showtime->fetch_object();
+$theater = $show->theater;
+$movieName=$show->movieName;
+$date=$show->date;
+$time=$show->timeslot;
+$res=$conn->query("select * from hall where showOrderId='$showOrderId'");
+          while ($row=$res->fetch_object()) {
+            $pdf->SetFont('Times','B',7);
+            $pdf->Cell(0, 0.2, 'Seat Info', 0, 0.01,'R');
+            $pdf->Cell(0, 0.1, $row->seat, 0, 0.01,'R');
+            $pdf->SetFont('Times','',7);
+           $pdf->Cell(0, 0.2,'theater :' .$theater,0,0.01,'L');
+            $pdf->Cell(0, 0.2, 'moviename :'.$moviename, 0, 0.01,'L');
+          $pdf->Cell(0, 0.2, 'Date  time :'.$date.' '.$time, 0, 0.01,'L');
 
   $pdf->Ln(2);
+          }
 
-}
-  
+
 //Dynamic part
 
 // $tim=$_GET['time'];
