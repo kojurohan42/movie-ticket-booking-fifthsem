@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 if (!session_id()) {
 	# code...

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Home</title>
+    <title>Home</title>
     <link rel="stylesheet" type="text/css" href="css/astyle.css">
-  <link rel="stylesheet" type="text/css" href="css/adminpage.css">
+    <link rel="stylesheet" type="text/css" href="css/adminpage.css">
 </head>
+
 <body>
-<div class="navbar">
+    <div class="navbar">
         <div class="navbar-container">
             <div class="logo-container">
                 <h1 class="logo">Future Cinemas</h1>
@@ -29,10 +31,9 @@
             </div>
         </div>
     </div>
- <?php include 'customerpage.php';?>
 
+    <?php include 'customerpage.php'; ?>
 
-
-		
 </body>
+
 </html>

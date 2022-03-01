@@ -107,9 +107,8 @@ body {
 }
 
 .slideshow-item-text {
-  max-width: 50%;
   position: absolute;
-  top: 80%;
+  top: 55%;
   left: 5%;
   color: rgba(255, 255, 255, 0.8);
   padding: 12px 7px;
@@ -487,4 +486,10 @@ body {
 
 .modal-close:hover {
   background: rgba(29, 161, 142, 0.1);
+}
+
+.mov_desc {
+  left: 0;
+  font: inherit;
+  text-transform: uppercase;
 }

@@ -1,11 +1,11 @@
-<?php  include_once 'db.php';
- require('fpdf/fpdf.php');
-  
-class PDF extends FPDF {
-  
+<?php  
+include_once 'db.php';
+require('fpdf/fpdf.php');
+
+class PDF extends FPDF {  
   // Page header
   function Header() {
-        
+
       // Add logo to page
       //$this->Image('gfg1.png',10,8,33);
         
@@ -68,7 +68,3 @@ $res=$conn->query("select * from hall where showOrderId='$showOrderId'");
   $pdf->Ln(2);
           }
 $pdf->Output();
-
-
-?>
-
