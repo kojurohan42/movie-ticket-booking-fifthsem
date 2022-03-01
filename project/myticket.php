@@ -1,74 +1,66 @@
-<?php  include_once 'db.php';
- require('fpdf/fpdf.php');
-  
-class PDF extends FPDF {
-  
-  // Page header
-  function Header() {
-        
-      // Add logo to page
-      //$this->Image('gfg1.png',10,8,33);
-        
-      // Set font family to Arial bold 
+<?php include 'header.php';?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title></title>
 
-      $this->SetFont('Arial','B',10);  
-      // Header
-      $this->Cell(0,0,'Future Cinemas',0,0,'C');
-      $this->Ln(0.1);
-      $this->SetFont('Arial','',5); 
-      $this->Cell(0,0.2,'XYZ,Nepal',0,0,'C');
-      $this->Ln(0.1);
-      $this->Cell(0,0.2,'futurecinemas@gmail.com',0,0,'C');
-      $this->Ln(0.1);
-      $this->Cell(0,0.2,'+9771234567890',0,0,'C');
-      $this->Ln(0.1);
-      $this->SetFont('Arial','B',8); 
-      $this->Cell(0,0.4,'Entrance Pass',0,0,'C');
-      $this->Ln(0.5);
-        
-  }
+	<link rel="stylesheet" type="text/css" href="css/style2.css">
 
-  // Page footer
-  function Footer() {
-        
-      // Position at 1.5 cm from bottom
-      $this->SetY(-1);
-        
-      // Arial italic 8
-      $this->SetFont('Arial','I',5);
-        
+</head>
+<body>
+	<div class="main-div">
+		<h3>Tickets</h3>
+		<div class="center-div">
+			<div class="content">
+				<table>
+		<thead>
+		<tr>
+      <th>Movie</th>
+			<th>Date</th>
+			<th>Theater</th>
+			<th>TimeSlot</th>
+      <th>Action</th>
+		</tr>
+	</thead>
+		<tbody>
+		<?php 
+
+    $user=$_SESSION['username'];
+    $sql="select showOrderId from hall where username='$user' group by showOrderId";
+    $query=mysqli_query($con,$sql);
+    $nums=mysqli_num_rows($query);
+    while($res = mysqli_fetch_array($query))
+    {
+        $id=$res['showOrderId'];
+        $sqli="select * from showorder where showOrderId='$id'";
+        $qry=mysqli_query($con,$sqli);
+        $nums=mysqli_num_rows($qry);
+        while($reso = mysqli_fetch_array($qry))
+        {  
+          ?>
+        <tr>
+          <td><?php echo $reso['movieName']?></td>
+          <td><?php echo $reso['date']?></td>
+          <td><?php echo $reso['theater']?></td>
+          <td><?php echo $reso['timeslot']?></td>
+          <td><button class="btn"><a href="download.php?ids=<?php echo $reso['showOrderId'] ?>">Download</a> </button></td>
+         
+        </tr>
+        <br>
       
-      $this->Cell(0,0,'Enjoy your movie experience at Future Cinemas.',0,0,'C');
-  }
-}
-
-// Instantiation of FPDF class
-$pdf = new PDF('p','in', [4.1,2.9]);
-
-// Define alias for number of pages
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$showOrderId=$_SESSION['showOrderId'];
-$showtime=$conn->query("select * from showorder where showOrderId='$showOrderId';");
-$show=$showtime->fetch_object();
-$theater = $show->theater;
-$movieName=$show->movieName;
-$date=$show->date;
-$time=$show->timeslot;
-$res=$conn->query("select * from hall where showOrderId='$showOrderId'");
-          while ($row=$res->fetch_object()) {
-            $pdf->SetFont('Times','B',7);
-            $pdf->Cell(0, 0.2, 'Seat Info', 0, 0.01,'R');
-            $pdf->Cell(0, 0.1, $row->seat, 0, 0.01,'R');
-            $pdf->SetFont('Times','',7);
-           $pdf->Cell(0, 0.2,'theater :' .$theater,0,0.01,'L');
-            $pdf->Cell(0, 0.2, 'moviename :'.$movieName, 0, 0.01,'L');
-          $pdf->Cell(0, 0.2, 'Date  time :'.$date.' '.$time, 0, 0.01,'L');
-
-  $pdf->Ln(2);
-          }
-$pdf->Output();
+        <?php
+        }
+    }
 
 
-?>
+?>	
+</tbody>
+</table>
+	</div>
+		</div>
 
+	</div>	
+	
+</body>
+</html>
